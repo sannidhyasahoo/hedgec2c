@@ -39,6 +39,7 @@ def run_simulations(df):
     
     last_rebalance_idx = -999
     
+    
     for i, row in df.iterrows():
         date = row["Date"]
         prices = {"Equity": row["Equity_Price"], "Gold": row["MA_Gold_Price"], "Oil": row["Oil_Price"]}
