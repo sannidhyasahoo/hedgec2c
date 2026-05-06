@@ -1,10 +1,9 @@
 # Hedge Fund Risk Modeling & Semi-Automated Trading System
 
 ## Team Information
-- **Team Name**: [Team Name]
-- **Year**: [Year]
-- **All-Female Team**: [Yes/No]
-
+- **Team Name**: Paneer_Lovers
+- **Year**: 2
+- **All-Female Team**: No
 ## Architecture Overview
 
 #### Describe your approach here. Keep it short and clear.
