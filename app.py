@@ -74,12 +74,15 @@ st.sidebar.success("Simulation Complete!")
 
 strat_nav = strat_port.nav_history
 bh_nav = bh_port.nav_history
-strat_ret = strat_port.get_returns()
-bh_ret = bh_port.get_returns()
-equity_ret = df["Equity_Returns_clean"]
+strat_ret = strat_port.get_returns().reset_index(drop=True)
+bh_ret = bh_port.get_returns().reset_index(drop=True)
 
-strat_metrics = compute_all_risk_metrics(strat_ret, benchmark_returns=equity_ret)
-bh_metrics = compute_all_risk_metrics(bh_ret, benchmark_returns=equity_ret)
+# Ensure benchmark returns are matched in length
+equity_ret = df["Equity_Returns_clean"].values[-len(strat_ret):] if len(strat_ret) > 0 else df["Equity_Returns_clean"].values
+equity_series = pd.Series(equity_ret)
+
+strat_metrics = compute_all_risk_metrics(strat_ret, benchmark_returns=equity_series)
+bh_metrics = compute_all_risk_metrics(bh_ret, benchmark_returns=equity_series)
 
 # --- Display KPIs ---
 col1, col2, col3, col4 = st.columns(4)

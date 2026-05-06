@@ -81,9 +81,9 @@ def evaluate():
                 last_rebalance_idx = i
 
     strat_ret = port.get_returns()
-    equity_ret = df["Equity_Returns_clean"]
+    equity_ret = df["Equity_Returns_clean"].values[-len(strat_ret):] if len(strat_ret) > 0 else df["Equity_Returns_clean"].values
     
-    metrics = compute_all_risk_metrics(strat_ret, benchmark_returns=equity_ret, risk_free_annual=0.02)
+    metrics = compute_all_risk_metrics(strat_ret.reset_index(drop=True), benchmark_returns=pd.Series(equity_ret), risk_free_annual=0.02)
     
     print("\n  [ML Strategy Portfolio]")
     print(metrics.summary())
